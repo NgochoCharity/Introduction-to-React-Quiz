@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './logo.svg';
+import {SRC , color, height} from './data';
 import './App.css';
 
 /**
@@ -13,17 +13,18 @@ const users = [
 ];
 
 // comment this out after completion and uncomment code below it to proceed
-function Child() {
-  return <div>This is children content</div>;
-}
-/**
-  Challenge: Uncomment this code to complete quiz
+// function Child() {
+//   return <div>This is children content</div>;
+// }
 
+function changeParent(){
+  
+}
 function Child() {
   return (
     <>
       <div>Child</div>
-      <button>Change Parent Value</button>
+      <button onClick={changeParent}>Change Parent Value</button>
     </>
   );
 }
@@ -47,36 +48,44 @@ function Parent() {
     </>
   );
 }
-Uncomment this to tackle quiz
-**/
 
 // Comment out after completion
-function Parent() {
-  return (
-    <div>
-      <h3>Parent Component</h3>
-    </div>
-  );
-}
+// function Parent() {
+//   return (
+//     <div>
+//       <h3>Parent Component</h3>
+//     </div>
+//   );
+// }
 // Comment above code after completion
 
 function App() {
-  const [] = React.useState(true);
+  const [isHidden, setIsHidden] = React.useState(true);
+function handleHide(){
+  setIsHidden((isHidden) => !isHidden)
+}
+
+
+const names = users.map((userName) => (
+  <li key={userName.id}>{userName.name}</li>
+))
   return (
     
     <>
-    
-    <img src={logo} className="App-logo" alt="logo" />
+    <h1 style={{color:color}}>JSX is Cool!</h1>
+    <img src={SRC} style = {{height:height}}className="App-logo" alt="logo" />
       <h3>User names</h3>
-      <ul></ul>
-      <button>Hide Element Below</button>
+      <ul>{names}</ul>
+      <button onClick ={handleHide}>{ isHidden ? ' Hide Element Below' : 'Show Element Below'}</button>
 
-      <div>Toggle Challenge</div>
+      <div>{isHidden ? "Toggle Challenge" : ""}</div>
+      
       <Parent>
       <Child />
     </Parent>
     </>
   );
 }
+
 
 export default App;
